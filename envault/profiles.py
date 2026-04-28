@@ -36,6 +36,10 @@ class Profile:
         """Return sorted list of variable keys."""
         return sorted(self.variables.keys())
 
+    def get(self, key: str, default: Optional[str] = None) -> Optional[str]:
+        """Return the value for *key*, or *default* if the key is not present."""
+        return self.variables.get(key, default)
+
     def to_dict(self) -> Dict:
         """Serialise to a plain dictionary."""
         return {
