@@ -94,3 +94,12 @@ def test_delete_snapshot(runner, saved_profile):
     )
     assert result.exit_code == 0
     assert "deleted" in result.output
+
+
+def test_delete_missing_snapshot(runner):
+    """Deleting a non-existent snapshot should fail with a clear error message."""
+    result = runner.invoke(
+        snapshot_cmd, ["delete", "ghost_000", "--yes"]
+    )
+    assert result.exit_code != 0
+    assert "not found" in result.output.lower()
